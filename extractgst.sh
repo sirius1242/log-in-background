@@ -1,4 +1,5 @@
 #!/bin/sh
+#source: https://wiki.archlinux.org/index.php/GDM#Log-in_screen_background_image
 
 workdir=${HOME}/shell-theme
 if [ ! -d ${workdir}/theme ]; then
