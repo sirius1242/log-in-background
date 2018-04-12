@@ -22,3 +22,5 @@ python str2bin.py string(or filename)
 if use string as parameter, you will get the result of this string; if filename was used, you will get the result of the contents in file __filename__
 
 or after execute `python str2bin.py`, type the string you want to convert.
+
+you can also use `./str2bin.py`, and if default python of your system is not python3, please change the head of script to python3
