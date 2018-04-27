@@ -9,7 +9,7 @@ There will be some scripts I think may be useful in this repository, and new scr
     
 ### usage:
 ``` 
-./change.sh name-of-image 
+./change.sh path-of-image 
 ```
 and after execute the script, tab Alt+F2 and enter 'restart'(in Xorg, and wayland do not apply restart without reboot)
 > ## [str2bin.py](./str2bin.py)
