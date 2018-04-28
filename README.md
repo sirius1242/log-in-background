@@ -26,6 +26,7 @@ or after execute `python str2bin.py`, type the string you want to convert.
 you can also use `./str2bin.py`, and if default python of your system is not python3, please change the head of script to python3
 > ## [curl.sh](./curl.sh)
 - An simple shell script to get wallpaper of bing today
+
 #### <span style="color:red"> **Caution! This script is based on string handling, extract the url begin with /az, so it may not always work properly**</span>
 
 - [There is a python3 script and set it as wallpaper](https://github.com/mammuth/bing-wallpaper)

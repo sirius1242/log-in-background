@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #workdir=~/bing-wallpaper
-[[ -z $1 ]] && workdir='~/bing-wallpaper' || workdir=$1
+[[ -z $1 ]] && workdir="$HOME/bing-wallpaper/" || workdir=$1
 site=cn.bing.com
 cd $workdir
 text=`wget -O- $site`
@@ -15,5 +15,5 @@ if [[ -e $filename ]]; then
 	notify-send "file exist!"
 	echo "file exist!"
 else
-	wget https://$site/$url
+	wget -O $workdir$filename https://$site/$url
 fi
