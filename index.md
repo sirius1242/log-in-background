@@ -41,3 +41,16 @@ you can also use `./str2bin.py`, and if default python of your system is not pyt
 if use workdir as parameter, you will download the wallpaper to `workdir`, if no workdir set, `workdir` set to `~/bing-wallpaper` as default (you can change this variable)
 
 you can put it in cron, and execute it every reboot (`@reboot`) or use `if [[ -z $BING_WALLPAPER ]]; then ./curl.sh && export BING_WALLPAPER=1; fi` execute every certain time in crontab, and if executed successfully, it will not execute after one successful download in one reboot.
+
+> ## [attach-download.py](./attach-download.py)
+- An simple shell script to download mail attach and name it with content
+
+- [Source script use for reference](https://stackoverflow.com/questions/43898753/script-to-download-the-attachments-from-an-email-having-a-specific-subject)
+### usage
+```sh
+./attach-download.py
+```
+
+change the arguments such as the download directory, your email address, your email password, subject filter and so on, and then execute it, it will download all attachments in the letters of subject appointed.
+
+You can also use it in cron, and then you can check the attachments regularly. However, it seems use sql and may not able to use regular expressions, so it can only use in assured subject.
