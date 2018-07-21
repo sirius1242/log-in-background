@@ -76,6 +76,13 @@ cp $1 $workdir
 cd $workdir
 sed -i "s#filename#$filename#g" gnome-shell-theme.gresource.xml
 sed -i "/#lockDialogGroup/,/^$/s#url(.*)#url($filename)#g" gnome-shell.css
+size=`sed -n "/#lockDialogGroup/,/^$/p" gnome-shell.css | grep background-size`
+TAB=$'\t'
+if [[ $? -ne 1 ]] ; then
+	sed -i "/#lockDialogGroup/,/^$/s#.*background-size.*#${TAB}background-size:\ cover;#g" gnome-shell.css
+else
+	sed -i "/#lockDialogGroup/,/^$/!b;/url(.*)/a${TAB}background-size:\ cover;" gnome-shell.css
+fi
 sed -i "/#lockDialogGroup/,/^$/s#\ repeat#\ no-repeat#g" gnome-shell.css
 glib-compile-resources gnome-shell-theme.gresource.xml
 sudo cp gnome-shell-theme.gresource /usr/share/gnome-shell
