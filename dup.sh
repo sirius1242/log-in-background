@@ -16,4 +16,6 @@ do
     else
         cp "$line" $2/$pre/$tmp
     fi
+    rm "$line"
+    ln $2/$pre/$tmp "$line"
 done
