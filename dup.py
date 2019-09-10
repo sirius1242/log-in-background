@@ -2,14 +2,22 @@
 
 import os
 import sys
-import hashlib, shutil
+import hashlib, shutil, stat, gc
 
 src = sys.argv[1]
 targ = sys.argv[2]
 for path, dir, files in os.walk(src):
+    print(path, flush=True)
     for f in files:
         name = os.path.join(path, f)
-        _hash = hashlib.sha1((open(name,'rb')).read()).hexdigest()
+        try:
+            if os.stat(name)[stat.ST_NLINK] >= 2 or not os.path.isfile(name):
+                continue
+            with open(name, 'rb') as fp:
+                _hash = hashlib.sha1(fp.read()).hexdigest()
+        except OSError:
+            print("Error occured when open "+name+"!")
+            continue
         pre = _hash[0:2]
         fold = os.path.join(targ, pre)
         dest = os.path.join(fold, _hash)
@@ -17,7 +25,14 @@ for path, dir, files in os.walk(src):
             os.mkdir(fold)
         if os.path.exists(dest):
             print(dest + " exist!")
+            os.remove(name)
+            try:
+                os.link(dest, name)
+            except OSError:
+                print("Error occured when link "+dest+" to "+name+"!")
         else:
-            shutil.copy2(name, dest)
-        os.remove(name)
-        os.link(dest, name)
+            try:
+                os.link(name, dest)
+            except OSError:
+                print("Error occured when link "+name+" to "+dest+"!")
+        gc.collect()
